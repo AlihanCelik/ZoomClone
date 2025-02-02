@@ -26,12 +26,12 @@ class LoginView extends StackedView<LoginViewModel> {
               style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Icon(Icons.video_camera_front_outlined,size: 150,color: Colors.white),
+              padding: const EdgeInsets.all(40.0),
+              child: Icon(Icons.video_camera_front,size: 150,color: Colors.white),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: CustomButton(text: "Login", onPressed:(){}),
+              child: CustomButton(text: "Google Sign In", onPressed:(){}),
             )
           ],
         ),
