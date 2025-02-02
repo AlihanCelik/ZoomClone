@@ -9,7 +9,7 @@ import 'login_viewmodel.dart';
 
 class LoginView extends StackedView<LoginViewModel> {
   const LoginView({Key? key}) : super(key: key);
-  final AuthMethods _authMethods=AuthMethods();
+
 
   @override
   Widget builder(
@@ -17,6 +17,7 @@ class LoginView extends StackedView<LoginViewModel> {
     LoginViewModel viewModel,
     Widget? child,
   ) {
+    final AuthMethods _authMethods=AuthMethods();
     return Scaffold(
       backgroundColor: kcBackgroundColor,
       body: Center(
