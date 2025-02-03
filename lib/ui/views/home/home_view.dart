@@ -3,6 +3,7 @@ import 'package:stacked/stacked.dart';
 import 'package:zoom_clone/ui/common/app_colors.dart';
 import 'package:zoom_clone/ui/common/ui_helpers.dart';
 
+import '../../common/components/HomeMeetingButton.dart';
 import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
@@ -14,66 +15,51 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
+
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
+      backgroundColor: kcBackgroundColor,
+      appBar: AppBar(
+        backgroundColor: backgroundColor,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        title: const Text("Meet & Chat",style: TextStyle(color: Colors.white),),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                verticalSpaceLarge,
-                Column(
-                  children: [
-                    const Text(
-                      'Hello, STACKED!',
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    verticalSpaceMedium,
-                    MaterialButton(
-                      color: Colors.black,
-                      onPressed: viewModel.incrementCounter,
-                      child: Text(
-                        viewModel.counterLabel,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MaterialButton(
-                      color: kcDarkGreyColor,
-                      onPressed: viewModel.showDialog,
-                      child: const Text(
-                        'Show Dialog',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    MaterialButton(
-                      color: kcDarkGreyColor,
-                      onPressed: viewModel.showBottomSheet,
-                      child: const Text(
-                        'Show Bottom Sheet',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                )
+                HomeMeetingButton(onPressed: (){},text: "New Meeting",icon:Icons.videocam),
+                HomeMeetingButton(onPressed: (){},text: "Join Meeting",icon:Icons.add_box_rounded),
+                HomeMeetingButton(onPressed: (){},text: "Schedule",icon:Icons.calendar_today),
+                HomeMeetingButton(onPressed: (){},text: "Share Screen",icon:Icons.arrow_upward_rounded)
               ],
             ),
+
           ),
-        ),
+        const Expanded(
+            child:Center(
+              child: Text("Create/Join Meetings with just a click!",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey),),))
+        ],
       ),
+      bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: footerColor,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.grey,
+          onTap: viewModel.onPageChanged,
+          currentIndex: viewModel.page,
+          items:const [
+        BottomNavigationBarItem(backgroundColor: footerColor,icon: Icon(Icons.comment_bank),label: "Meet § Char"),
+        BottomNavigationBarItem(backgroundColor: footerColor,icon: Icon(Icons.lock_clock),label: "Meetings"),
+        BottomNavigationBarItem(backgroundColor: footerColor,icon: Icon(Icons.person_outline),label: "Contacts"),
+        BottomNavigationBarItem(backgroundColor: footerColor,icon: Icon(Icons.settings_outlined),label: "Settings")
+       ]
+     ),
+
     );
   }
 
